@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Score Monster</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="prefs_general">General</string>
+    <string name="trial">Trial</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Observer</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Start Clock</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="observer">Observer</string>
 </resources>
