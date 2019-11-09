@@ -24,14 +24,16 @@ public class SettingsActivity extends AppCompatActivity {
     // Set up data fields
     private static final String BASE_URL = "https://android.trialmonster.uk/getTrialList.php";
     ArrayList<HashMap<String, String>> theTrialList;
+    SettingsFragment settingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        settingsFragment = new SettingsFragment();
         setContentView(R.layout.settings_activity);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.settings, new SettingsFragment())
+                .replace(R.id.settings, settingsFragment)
                 .commit();
 
         // Add title bar
@@ -55,28 +57,19 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+        }
 
-            // Ref - https://stackoverflow.com/questions/6474707/how-to-fill-listpreference-dynamically-when-onpreferenceclick-is-triggered
+        public void setList(String[] theIDs, String[] theTrials){
             ListPreference lp = findPreference("trial_list");
-            CharSequence[] entries = { "Christmas Trial", "New Year Trial" };
-            CharSequence[] entryValues = {"1" , "2"};
+            CharSequence[] entries = theTrials;
+            CharSequence[] entryValues = theIDs;
             lp.setEntries(entries);
             lp.setEntryValues(entryValues);
         }
-
-        public void setList(){}
     }
 
     private void getTrialList(final String urlWebService) {
-        /*
-         * As fetching the json string is a network operation
-         * And we cannot perform a network operation in main thread
-         * so we need an AsyncTask
-         * The constrains defined here are
-         * Void -> We are not passing anything
-         * Void -> Nothing at progress update as well
-         * String -> After completion it should return a string and it will be the json string
-         * */
+
         class GetData extends AsyncTask<Void, Void, String> {
 
             String[] theTrials, theIDs;
@@ -87,18 +80,6 @@ public class SettingsActivity extends AppCompatActivity {
             protected void onPreExecute() {
 
                 super.onPreExecute();
-                // Show dialog during server transaction
-                // dialog = ProgressDialog.show(SetupActivity.this, "Scoremonster", "Getting trial list", true);
-/*                dialog = new ProgressDialog(SettingsActivity.this);
-                dialog.setMessage("Loading…");
-                dialog.setCancelable(false);
-                dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();*/
             }
 
 
@@ -121,6 +102,8 @@ public class SettingsActivity extends AppCompatActivity {
                     theTrials[index] = theTrialList.get(index).get("name");
                     theIDs[index] = theTrialList.get(index).get("id");
                 }
+
+                settingsFragment.setList(theIDs,theTrials);
             }
 
             /*
