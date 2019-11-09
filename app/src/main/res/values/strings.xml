@@ -7,8 +7,6 @@
     <string name="trial">Trial</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Observer</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Start Clock</string>

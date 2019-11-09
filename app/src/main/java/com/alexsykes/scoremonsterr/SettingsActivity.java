@@ -1,17 +1,12 @@
 package com.alexsykes.scoremonsterr;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
-import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.json.JSONArray;
@@ -68,6 +63,8 @@ public class SettingsActivity extends AppCompatActivity {
             lp.setEntries(entries);
             lp.setEntryValues(entryValues);
         }
+
+        public void setList(){}
     }
 
     private void getTrialList(final String urlWebService) {
