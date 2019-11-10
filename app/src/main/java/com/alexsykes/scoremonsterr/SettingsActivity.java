@@ -46,10 +46,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         try {
             getTrialList(BASE_URL);
-            Toast.makeText(SettingsActivity.this, "Some data", Toast.LENGTH_LONG).show();
+            // Toast.makeText(SettingsActivity.this, "Some data", Toast.LENGTH_LONG).show();
 
         } catch (NullPointerException e) {
-            Toast.makeText(SettingsActivity.this, "Empty data", Toast.LENGTH_LONG).show();
+            // Toast.makeText(SettingsActivity.this, "Empty data", Toast.LENGTH_LONG).show();
         }
     }
 
