@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class SettingsActivity extends AppCompatActivity {
     // Set up data fields
-    private static final String BASE_URL = "https://android.trialmonster.uk/getTrialList.php";
+    private static final String BASE_URL = "https://android.trialmonster.uk/";
     ArrayList<HashMap<String, String>> theTrialList;
     SettingsFragment settingsFragment;
 
@@ -42,10 +42,10 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        // String URL = BASE_URL + "getTrialList.php";
+        String URL = BASE_URL + "getTrialList.php";
 
         try {
-            getTrialList(BASE_URL);
+            getTrialList(URL);
             // Toast.makeText(SettingsActivity.this, "Some data", Toast.LENGTH_LONG).show();
 
         } catch (NullPointerException e) {

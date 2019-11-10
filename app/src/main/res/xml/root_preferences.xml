@@ -10,9 +10,7 @@
 
         <SwitchPreferenceCompat
             app:key="observer"
-            app:title="@string/observer"
-            />
-
+            app:title="@string/observer" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/observer"
