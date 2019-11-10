@@ -60,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         public void setList(String[] theIDs, String[] theTrials){
-            ListPreference lp = findPreference("trial_list");
+            ListPreference lp = findPreference("trial_id");
             CharSequence[] entries = theTrials;
             CharSequence[] entryValues = theIDs;
             lp.setEntries(entries);
@@ -81,12 +81,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                 super.onPreExecute();
             }
-
-
-            /* this method will be called after execution
-
-                s contains trial details in JSON string
-             */
 
             @Override
             protected void onPostExecute(String s) {
@@ -123,7 +117,6 @@ public class SettingsActivity extends AppCompatActivity {
                         id = jsonArray.getJSONObject(index).getString("id");
                         name = jsonArray.getJSONObject(index).getString("name");
 
-                        // trial = club + " - " + name;
                         theTrial.put("id", id);
                         theTrial.put("name", name);
                         theTrialList.add(theTrial);

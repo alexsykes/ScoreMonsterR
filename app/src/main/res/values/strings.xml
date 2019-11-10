@@ -15,4 +15,9 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="observer">Observer</string>
+    <string name="section">Section</string>
+    <string name="timer">Timer</string>
+    <string name="starttimer">Start timer</string>
+    <string name="timekeeper">Timekeeper</string>
+    <string name="name">Name</string>
 </resources>
