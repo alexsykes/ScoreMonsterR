@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 public class MainActivity extends FragmentActivity {
@@ -43,6 +45,14 @@ public class MainActivity extends FragmentActivity {
         }
 
         TouchFragment touchFragment = new TouchFragment();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        // fragmentTransaction.add(new TouchFragment());
+        fragmentTransaction.commit();
+
+
+
         statusLine.setText("Trial id: " + trialId);
     }
 
