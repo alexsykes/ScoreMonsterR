@@ -3,12 +3,9 @@ package com.alexsykes.scoremonsterr;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -44,7 +41,6 @@ public class MainActivity extends FragmentActivity {
             goSetup();
         }
 
-        TouchFragment touchFragment = new TouchFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -52,8 +48,8 @@ public class MainActivity extends FragmentActivity {
         fragmentTransaction.commit();
 
 
-
-        statusLine.setText("Trial id: " + trialId);
+        String status = "Trial ID: " + trialId;
+        statusLine.setText(status);
     }
 
     private void goSetup() {
@@ -61,16 +57,6 @@ public class MainActivity extends FragmentActivity {
         startActivityForResult(intent, TEXT_REQUEST);
     }
 
-    public void countDabs(View view) {
+    public void addDigit(View view) {
     }
-
-    public static class TouchFragment extends Fragment {
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.fragment_score_pad, container, false);
-        }
-    }
-
 }

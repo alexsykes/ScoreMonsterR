@@ -4,8 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_weight="1"
-    android:orientation="vertical" >
-    <!--tools:context=".ScorePadFragment" -->
+    android:orientation="vertical"
+    tools:context=".ScorePadFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="enterScore"
+            android:onClick="addDigit"
             android:text="@string/_0"
             android:textColor="@color/colorButtonGreen"
             android:textSize="18sp" />
@@ -35,7 +35,6 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="enterScore"
             android:text="@string/_1"
 
             android:textColor="@color/colorButtonAmber"
@@ -47,7 +46,6 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="enterScore"
             android:text="@string/_2"
             android:textColor="@color/colorButtonAmber"
             android:textSize="18sp" />
@@ -58,7 +56,6 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="enterScore"
             android:text="@string/_3"
             android:textColor="@color/colorButtonAmber"
             android:textSize="18sp" />
@@ -76,7 +73,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="enterScore"
             android:text="@string/_5"
             android:textColor="@color/colorButtonBrightRed"
             android:textSize="18sp" />
@@ -94,7 +90,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="enterScore"
             android:text="@string/_10"
             android:textColor="@color/colorButtonRed"
             android:textSize="18sp" />
