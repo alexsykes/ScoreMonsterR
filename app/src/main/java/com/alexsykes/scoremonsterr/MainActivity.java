@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
@@ -41,11 +40,10 @@ public class MainActivity extends FragmentActivity {
             goSetup();
         }
 
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        // fragmentTransaction.add(new TouchFragment());
-        fragmentTransaction.commit();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.top, new NumberPadFragment());
+        ft.replace(R.id.bottom, new TouchFragment());
+        ft.commit();
 
 
         String status = "Trial ID: " + trialId;
