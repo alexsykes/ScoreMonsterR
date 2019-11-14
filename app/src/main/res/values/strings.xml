@@ -39,4 +39,5 @@
     <string name="five">Five</string>
     <string name="ten">Ten</string>
     <string name="trial_id">Trial id:</string>
+    <string name="save">Save</string>
 </resources>
