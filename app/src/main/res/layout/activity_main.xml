@@ -32,7 +32,7 @@
         android:id="@+id/riderNumberView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/rider_number"
         android:textColor="@color/colorButtonBlue"
         android:textSize="36sp"
         android:textStyle="bold" />
@@ -41,7 +41,7 @@
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="clip_horizontal"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
     </LinearLayout>
@@ -50,7 +50,7 @@
         android:id="@+id/scoreView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/score"
         android:textColor="@color/colorButtonBlue"
         android:textSize="36sp"
         android:textStyle="bold" />
@@ -59,7 +59,7 @@
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="clip_horizontal"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
     </LinearLayout>

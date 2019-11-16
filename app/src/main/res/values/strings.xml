@@ -41,4 +41,6 @@
     <string name="trial_id">Trial id:</string>
     <string name="save">Save</string>
     <string name="setup">Settings</string>
+    <string name="score">Score</string>
+    <string name="rider_number">Number</string>
 </resources>
