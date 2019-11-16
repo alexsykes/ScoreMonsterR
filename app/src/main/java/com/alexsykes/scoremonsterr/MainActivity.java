@@ -3,16 +3,20 @@ package com.alexsykes.scoremonsterr;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
     public static final int TEXT_REQUEST = 1;
     SharedPreferences prefs;
     TextView statusLine, scoreView;
@@ -21,6 +25,12 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Add custom ActionBar
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        myToolbar.getMenu();
+
+        FragmentManager manager = this.getSupportFragmentManager();
 
         statusLine = findViewById(R.id.statusView);
         // Check for initialisation of prefs
@@ -94,5 +104,28 @@ public class MainActivity extends FragmentActivity {
         }
         scoreView.setText(String.valueOf(score));
         return score;
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            // Enter andinitialise section details
+            case R.id.setup:
+                goSetup();
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

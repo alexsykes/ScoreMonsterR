@@ -40,4 +40,5 @@
     <string name="ten">Ten</string>
     <string name="trial_id">Trial id:</string>
     <string name="save">Save</string>
+    <string name="setup">Settings</string>
 </resources>
