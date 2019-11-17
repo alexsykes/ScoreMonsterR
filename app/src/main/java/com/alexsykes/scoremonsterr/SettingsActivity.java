@@ -60,11 +60,17 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         public void setList(String[] theIDs, String[] theTrials){
+            // Check for initialisation of prefs
+            //    SharedPreferences sharedPreferences =
+            //           PreferenceManager.getDefaultSharedPreferences(getActivity());
+            //   String trialId = sharedPreferences.getString("trial_id", "");
+
             ListPreference lp = findPreference("trial_id");
             CharSequence[] entries = theTrials;
             CharSequence[] entryValues = theIDs;
             lp.setEntries(entries);
             lp.setEntryValues(entryValues);
+            //     lp.setValue(trialId);
         }
     }
 
