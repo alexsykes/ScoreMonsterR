@@ -1,5 +1,6 @@
 package com.alexsykes.scoremonsterr;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
     private static final String BASE_URL = "https://android.trialmonster.uk/";
     ArrayList<HashMap<String, String>> theTrialList;
     SettingsFragment settingsFragment;
+    String trialName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,20 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat {
+    @Override
+    protected void onStop() {
+        // call the superclass method first
+        super.onStop();
+
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(this);
+        String trial_id = sharedPreferences.getString("trial_id", "");
+
+        trialName = settingsFragment.getTrialName();
+        String trial_name =  "trial name";
+    }
+
+        public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
@@ -71,6 +87,10 @@ public class SettingsActivity extends AppCompatActivity {
             lp.setEntries(entries);
             lp.setEntryValues(entryValues);
             //     lp.setValue(trialId);
+        }
+
+        public String getTrialName(){
+            return "Name";
         }
     }
 
