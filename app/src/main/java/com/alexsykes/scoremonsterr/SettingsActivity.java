@@ -3,7 +3,6 @@ package com.alexsykes.scoremonsterr;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -99,7 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
                     theTrials[index] = theTrialList.get(index).get("name");
                     theIDs[index] = theTrialList.get(index).get("id");
                 }
-                settingsFragment.setList(theIDs, theTrials);
+                settingsFragment.setListPrefs(theIDs, theTrials);
             }
 
             /*
@@ -178,45 +177,33 @@ public class SettingsActivity extends AppCompatActivity {
         getJSON.execute();
     }
 
-    public void setTrial(View view) {
-        settingsFragment.setTrial();
-    }
-
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
         }
 
-        public void setList(String[] theIDs, String[] theTrials) {
+        public void setListPrefs(String[] theIDs, String[] theTrials) {
             // Get trial ListPreference
             ListPreference lp = findPreference("trial_id");
+            lp.setDialogTitle(R.string.select_trial);
 
             // Set up trial option list from downloaded data
             CharSequence[] entries = theTrials;
             CharSequence[] entryValues = theIDs;
-            lp.setEntries(entries);
-            lp.setEntryValues(entryValues);
 
-            // Check for initialisation of prefs
-            // setTrial("11");
-        }
-
-        public String getTrialName() {
-            return "Name";
-        }
-
-        public void setTrial() {
+            // Get current value
             SharedPreferences sharedPreferences =
                     PreferenceManager.getDefaultSharedPreferences(getActivity());
             String trialId = sharedPreferences.getString("trial_id", "");
-            // Get trial ListPreference
-            ListPreference lp = findPreference("trial_id");
-            //CharSequence[] vlaues = lp.getEntryValues();
-
             int index = lp.findIndexOfValue(trialId);
+
+            // Populate with values and id
+            lp.setEntries(entries);
+            lp.setEntryValues(entryValues);
+
+            // Select
             lp.setValueIndex(index);
         }
     }
-
 }

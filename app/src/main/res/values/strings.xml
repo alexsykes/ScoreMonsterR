@@ -44,4 +44,5 @@
     <string name="score">Score</string>
     <string name="rider_number">Number</string>
     <string name="button">Click me</string>
+    <string name="select_trial">Select trial</string>
 </resources>
