@@ -43,4 +43,5 @@
     <string name="setup">Settings</string>
     <string name="score">Score</string>
     <string name="rider_number">Number</string>
+    <string name="button">Click me</string>
 </resources>

@@ -3,6 +3,7 @@ package com.alexsykes.scoremonsterr;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -60,38 +61,13 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onStop() {
         // call the superclass method first
         super.onStop();
-
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
-        String trial_id = sharedPreferences.getString("trial_id", "");
-
-        trialName = settingsFragment.getTrialName();
-        String trial_name =  "trial name";
-    }
-
-        public static class SettingsFragment extends PreferenceFragmentCompat {
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.root_preferences, rootKey);
-        }
-
-        public void setList(String[] theIDs, String[] theTrials){
-            // Check for initialisation of prefs
-            //    SharedPreferences sharedPreferences =
-            //           PreferenceManager.getDefaultSharedPreferences(getActivity());
-            //   String trialId = sharedPreferences.getString("trial_id", "");
-
-            ListPreference lp = findPreference("trial_id");
-            CharSequence[] entries = theTrials;
-            CharSequence[] entryValues = theIDs;
-            lp.setEntries(entries);
-            lp.setEntryValues(entryValues);
-            //     lp.setValue(trialId);
-        }
-
-        public String getTrialName(){
-            return "Name";
-        }
+//
+//        SharedPreferences sharedPreferences =
+//                PreferenceManager.getDefaultSharedPreferences(this);
+//        String trial_id = sharedPreferences.getString("trial_id", "");
+//
+//        trialName = settingsFragment.getTrialName();
+//        String trial_name = "trial name";
     }
 
     private void getTrialList(final String urlWebService) {
@@ -108,12 +84,13 @@ public class SettingsActivity extends AppCompatActivity {
                 super.onPreExecute();
             }
 
+            // Post execute here
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
 
                 // Populate ArrayList with JSON data
-                 theTrialList = populateResultArrayList(s);
+                theTrialList = populateResultArrayList(s);
 
                 theTrials = new String[theTrialList.size()];
                 theIDs = new String[theTrialList.size()];
@@ -122,8 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
                     theTrials[index] = theTrialList.get(index).get("name");
                     theIDs[index] = theTrialList.get(index).get("id");
                 }
-
-                settingsFragment.setList(theIDs,theTrials);
+                settingsFragment.setList(theIDs, theTrials);
             }
 
             /*
@@ -132,7 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
              */
             private ArrayList<HashMap<String, String>> populateResultArrayList(String json) {
                 ArrayList<HashMap<String, String>> theTrialList = new ArrayList<>();
-                String  name, id;
+                String name, id;
 
                 try {
                     // Parse string data into JSON
@@ -200,6 +176,47 @@ public class SettingsActivity extends AppCompatActivity {
         //creating asynctask object and executing it
         GetData getJSON = new GetData();
         getJSON.execute();
+    }
+
+    public void setTrial(View view) {
+        settingsFragment.setTrial();
+    }
+
+    public static class SettingsFragment extends PreferenceFragmentCompat {
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            setPreferencesFromResource(R.xml.root_preferences, rootKey);
+        }
+
+        public void setList(String[] theIDs, String[] theTrials) {
+            // Get trial ListPreference
+            ListPreference lp = findPreference("trial_id");
+
+            // Set up trial option list from downloaded data
+            CharSequence[] entries = theTrials;
+            CharSequence[] entryValues = theIDs;
+            lp.setEntries(entries);
+            lp.setEntryValues(entryValues);
+
+            // Check for initialisation of prefs
+            // setTrial("11");
+        }
+
+        public String getTrialName() {
+            return "Name";
+        }
+
+        public void setTrial() {
+            SharedPreferences sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String trialId = sharedPreferences.getString("trial_id", "");
+            // Get trial ListPreference
+            ListPreference lp = findPreference("trial_id");
+            //CharSequence[] vlaues = lp.getEntryValues();
+
+            int index = lp.findIndexOfValue(trialId);
+            lp.setValueIndex(index);
+        }
     }
 
 }
